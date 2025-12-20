@@ -26,3 +26,17 @@ print(next(gen))
 
 print("")
 print("Завдання 2")
+def passwordGenerator(maxLength):
+    letters = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+    def generate(current):
+        if len(current) == maxLength:
+            yield current
+            return
+        for char in letters:
+            yield from generate(current + char)
+
+    yield from generate("")
+
+for password in passwordGenerator(4):
+    print(password)
